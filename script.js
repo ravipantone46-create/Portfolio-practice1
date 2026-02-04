@@ -10,6 +10,63 @@ if (downloadBtn) {
 }
 
 // =====================
+
+
+const canvas = document.getElementById("stars");
+const ctx = canvas.getContext("2d");
+
+canvas.width = window.innerWidth;
+canvas.height = window.innerHeight;
+
+let stars = [];
+const STAR_COUNT = 220;
+
+function createStars() {
+  stars = [];
+  for (let i = 0; i < STAR_COUNT; i++) {
+    stars.push({
+      x: Math.random() * canvas.width,
+      y: Math.random() * canvas.height,
+      radius: Math.random() * 1.8 + 0.6,
+      alpha: Math.random(),
+      delta: Math.random() * 0.015 + 0.008,
+      glow: Math.random() * 8 + 4
+    });
+  }
+}
+
+function drawStars() {
+  ctx.clearRect(0, 0, canvas.width, canvas.height);
+
+  stars.forEach(star => {
+    ctx.beginPath();
+    ctx.shadowBlur = star.glow;
+    ctx.shadowColor = "rgba(18, 153, 231, 0.8)";
+    ctx.arc(star.x, star.y, star.radius, 0, Math.PI * 2);
+    ctx.fillStyle = `rgba(230, 255, 255, ${star.alpha})`;
+    ctx.fill();
+
+    star.alpha += star.delta;
+    if (star.alpha <= 0.2 || star.alpha >= 1) {
+      star.delta = -star.delta;
+    }
+  });
+
+  requestAnimationFrame(drawStars);
+}
+
+createStars();
+drawStars();
+
+window.addEventListener("resize", () => {
+  canvas.width = window.innerWidth;
+  canvas.height = window.innerHeight;
+  createStars();
+});
+
+
+
+
 // SMOOTH SCROLL FOR NAV LINKS
 // =====================
 const navLinks = document.querySelectorAll("nav a");
