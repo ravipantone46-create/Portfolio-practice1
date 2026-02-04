@@ -5,18 +5,42 @@
     box-sizing: border-box;
     font-family: 'Poppins', sans-serif;
 }
+section {
+  background: rgba(8, 45, 45, 0.78);
+}
+
+
+
 
 body {
     line-height: 1.7;
+     background: radial-gradient(circle at top, #0b3a3a, #021919);
     color: #fff;
-    background: url('https://png.pngtree.com/thumb_back/fh260/background/20251216/pngtree-abstract-teal-wave-pattern-background-image_20846212.webp') no-repeat center center fixed;
     background-size: cover;
     scroll-behavior: smooth;
     position: relative;
+
+    
+}
+#stars {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  z-index: -1;
+  background: radial-gradient(circle at bottom, #0a2f2f, #021b1b);
 }
 
+
+
+
+
+
+
+
 /* Dark Overlay */
-body::before {
+/* body::before {
     content: '';
     position: fixed;
     top: 0;
@@ -25,16 +49,67 @@ body::before {
     height: 100%;
     background: #063c34;
     z-index: -1;
+} */
+.profile-pic {
+  position: relative;
+  width: 220px;
+  height: 220px;
+  border-radius: 50%;
+  overflow: hidden;
+
+  border: 3px solid #22d3ee;
+  margin: 0 auto 1rem;
 }
+
+.profile-pic img {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  animation: fadeSlide 12s infinite;
+  opacity: 0;
+}
+.profile-pic img:nth-child(1) { animation-delay: 0s; }
+.profile-pic img:nth-child(2) { animation-delay: 3s; }
+.profile-pic img:nth-child(3) { animation-delay: 6s; }
+.profile-pic img:nth-child(4) {animation-delay: 9s;}
+@keyframes fadeSlide {
+  0%   { opacity: 0; }
+  5%   { opacity: 1; }
+  30%  { opacity: 1; }
+  35%  { opacity: 0; }
+  100% { opacity: 0; }
+}
+.about-content p {
+  animation: textFade 1.2s ease forwards;
+}
+
+@keyframes textFade {
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+
 
 /* ---------------- Navbar ---------------- */
 #navbar {
-    background-color: rgba(30,40,47,0.9);
+    background-color: #1db5a3;
     position: sticky;
     top: 0;
     z-index: 1000;
     box-shadow: 0 4px 12px rgba(0,0,0,0.3);
+  
+   
 }
+
 
 .nav-container {
     max-width: 1200px;
@@ -50,6 +125,16 @@ body::before {
     color:  #ffffff;
     font-size: 1.8rem;
     font-weight: 700;
+    animation: myName 2s infinite;
+}
+@keyframes myName {
+    from 
+    {
+        color:black;
+    }
+    to {
+        color: blue;
+    }
 }
 
 .nav-links {
@@ -60,9 +145,10 @@ body::before {
 }
 
 .nav-links a {
-    color: #cfd8dc;
+    color:  black;
+    font-weight: bold;
     text-decoration: none;   /* removes underline from the text if apply by default */
-    font-weight: 500;
+    font-weight: 700;
     padding: 0.5rem 1rem;
     border-radius: 5px;
     transition: 0.3s;
@@ -102,14 +188,14 @@ body::before {
     box-shadow: 0 12px 25px rgba(0,0,0,0.4);
 }
 
-.profile-card img {
+/* .profile-card img {
     width: 150px;
     height: 150px;
     border-radius: 50%;
     object-fit: cover;
     margin-bottom: 1rem;
     border: 3px solid #007bff;
-}
+} */
 
 .profile-card h2 {
     font-size: 1.6rem;
@@ -147,7 +233,9 @@ body::before {
     border-radius: 15px;
     padding: 2rem;
     transition: transform 0.3s, box-shadow 0.3s;
+    
 }
+
 
 .about-content:hover {
     transform: translateY(-5px);
@@ -158,7 +246,9 @@ body::before {
     font-size: 2.2rem;
     color: White;
     margin-bottom: 1rem;
+   
 }
+
 
 .about-content p {
     font-size: 1rem;
